@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta lang="es">
+	<meta name="description" content="Resumen del contenido"> 
+	<meta name="description" content="Free Web tutorials">
+  	<meta name="keywords" content="HTML,CSS,XML,JavaScript">
+  	<meta name="author" content="Juan Carlos">
+	<title></title>
+	<style type="text/css">
+			* {
+				margin:0px;
+				position: relative;
+				padding: 0px;
+				overflow: none;
+			}
+			#body {
+				width: 100vw;
+				height: 100vh;
+				background-color: black;
+
+			}
+			div {
+				height: 100%;
+				width:100%;
+				background-color: black;
+			}
+			img {
+				position: absolute;
+				top: 300px;
+				left: 600px;
+			}
+	</style>
+	<script type="text/javascript">
+			//variables de posición del cohete
+			var x=600;
+			var y=300;
+			//activar listener para detectar pulsacion de tecla
+			window.onload=function() {
+				document.addEventListener('keydown', moverCohete);
+				document.addEventListener('keypress', moverCohete);
+			}
+
+			function moverCohete(event) {
+				//recuperar tecla pulsada
+				var tecla= event.keyCode;
+				//var keyCode=event.which; 
+				//alert (tecla)
+				//alert(keyCode)
+				//alert(window.screen.height)
+				//alert(window.screen.width)
+				//como controlar los margenes del div
+				//console.log(document.getElementById('cohete'));
+				//alert(cohete.getBoundingClientRect());
+				//cambiar posición del cohete
+				//var elemento=document.getElementById('cohete')
+				//var posicion=elemento.getBoundingClientRect();
+				//console.log(body)
+				//console.log(posicion.top, posicion.right, posicion.bottom, posicion.left)
+				//var arriba = posicion.top
+				//var derecha= posicion.right
+				//var abajo= posicion.bottom
+				//var izquierda=posicion.left
+				//var alto=window.screen.height;
+				//var ancho=window.screen.width;
+				//alert(window.screen.height)
+				//alert(window.screen.width)
+				//var cuerpo=document.getElementById('contenedor')
+				//var alto = cuerpo.clientHeight-5;
+				//var ancho =cuerpo.clientWidth-30;
+				//alert(alto)
+				//alert(ancho)
+				var x=document.getElementById('cohete').offsetLeft;
+				var y=document.getElementById('cohete').offsetTop; 
+				//alert (y)
+				//alert (x)
+				switch (tecla)  {
+					//top
+					case 38:
+						(y<0)? y=0: y-=5; //si llegamos al borde superior no seguimos restando 
+						break
+					//bottom
+					case 40:
+						(y+100>window.innerHeight)? y=window.innerHeight-document.getElementById('cohete').height :  y+=5;//si llegamos al borde inferior no  seguimos sumando (hay  que considerar que el cohete tiene 100px de alto)
+						//alert(abajo)
+						break
+					//left
+					case 37:
+						(x<0)? x=0:  x-=5; //si llegamos al borde izquierdo no seguimos restando
+						break
+					//right
+					case 39:
+						(x+40>window.innerWidth)? x=window.innerWidth-document.getElementById('cohete').width : x+=5;//si llegamos al borde derecho no seguimos sumando (hay que  considerar que el cohete tiene 30px de ancho)
+						break
+
+				}
+				//mover cohete a nueva ubicación
+				document.getElementById('cohete').style.top = y +'px'
+				document.getElementById('cohete').style.left = x +'px'
+			}
+	</script>
+</head>
+<body id="body">
+	<div id="contenedor">
+		<img id="cohete" src="img/cohete.png">
+	</div>
+
+</body>
+</html>
